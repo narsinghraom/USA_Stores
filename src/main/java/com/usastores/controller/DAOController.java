@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.usastores.bean.MessagePrint;
 import com.usastores.bean.StoreBean;
 import com.usastores.cfg.SpringConfiguration;
 import com.usastores.service.Service;
@@ -23,11 +24,13 @@ public class DAOController
 	private Logger LOGGER=Logger.getLogger(DAOController.class);
 	@Autowired
 	Service service;
+	@Autowired
+	MessagePrint message;
 	
 	@RequestMapping(value="/saveInTable",method=RequestMethod.POST)
 	public ModelAndView saveInTable(@ModelAttribute StoreBean storeBean)
 	{
-		LOGGER.info("/saveInTable request "+storeBean);
+		LOGGER.info(message.getMessage("/saveInTable request ")+storeBean);
 		ModelAndView modelObj=new ModelAndView();
 		int res= service.insert(storeBean);
 		modelObj.addObject("responseObj", res+" store Added");
@@ -39,7 +42,7 @@ public class DAOController
 	@RequestMapping(value="/updateInTable",method=RequestMethod.POST)
 	public ModelAndView updateInTable(@ModelAttribute StoreBean storeBean)
 	{
-		LOGGER.info("/updateInTable request "+storeBean);
+		LOGGER.info(message.getMessage("/updateInTable request ")+storeBean);
 		ModelAndView modelObj=new ModelAndView();
 		int res=service.update(storeBean);
 		modelObj.addObject("responseObj", res+" store Updated");
@@ -52,7 +55,7 @@ public class DAOController
 	@RequestMapping(value="/deleteInTable",method=RequestMethod.POST)
 	public ModelAndView deleteInTable(@RequestParam("storeId") int storeId)
 	{
-		LOGGER.info("/deleteInTable request "+storeId);
+		LOGGER.info(message.getMessage("/deleteInTable request ")+storeId);
 		ModelAndView modelObj=new ModelAndView();
 		int res= service.delete(storeId);
 		modelObj.addObject("responseObj", res +" store Deleted");
@@ -65,11 +68,11 @@ public class DAOController
 	@RequestMapping(value="/findAStore",method=RequestMethod.POST)
 	public ModelAndView searchInTable(@RequestParam int storeId , @RequestParam("buttonAction") String buttonVal)
 	{
-		LOGGER.info("/findAStore request "+storeId);
+		LOGGER.info(message.getMessage("/findAStore request ")+storeId);
 		ModelAndView modelObj=new ModelAndView();
 		List<StoreBean> listRes=service.search(storeId);
 		modelObj.addObject("ListResponse", listRes);
-		LOGGER.info("/saveInTable request "+listRes);
+		LOGGER.info(message.getMessage("/findAStore response ")+listRes);
 		if(buttonVal.equalsIgnoreCase("search"))
 		{
 		modelObj.setViewName("Search");
@@ -82,11 +85,11 @@ public class DAOController
 	}
 	@RequestMapping(value= "/findAStore/{storeId}",method=RequestMethod.GET)    
     public ModelAndView greet(@PathVariable int storeId, ModelMap model){
-		LOGGER.info("/findAStore path request "+storeId);
+		LOGGER.info(message.getMessage("/findAStore path request ")+storeId);
 		ModelAndView modelObj=new ModelAndView();
 		List<StoreBean> listRes=service.search(storeId);
 		modelObj.addObject("ListResponse", listRes);
-		LOGGER.info("/saveInTable request "+listRes);
+		LOGGER.info(message.getMessage("/findAStore path response ")+listRes);
 		modelObj.setViewName("SearchStore");
 		return modelObj;
     }
