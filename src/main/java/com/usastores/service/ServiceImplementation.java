@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.usastores.bean.StoreBean;
 import com.usastores.dao.DAO;
 
+@org.springframework.stereotype.Service
 public class ServiceImplementation implements Service
 {
 	@Autowired

@@ -9,6 +9,11 @@ import javax.persistence.Table;
 @Table(name="storetable")
 public class StoreBean 
 {
+	@Override
+	public String toString() {
+		return "StoreBean [storeId=" + storeId + ", storeName=" + storeName + ", storeArea=" + storeArea + ", zipcode="
+				+ zipcode + ", distanceInMiles=" + distanceInMiles + "]";
+	}
 	@Id
 	@GeneratedValue
 	private int storeId;
