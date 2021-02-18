@@ -9,6 +9,9 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+/*
+Web.xml configuration by replacing the below code.
+*/
 public class WebServletConfiguration implements WebApplicationInitializer{
 	private Logger LOGGER=Logger.getLogger(WebServletConfiguration.class);
 	

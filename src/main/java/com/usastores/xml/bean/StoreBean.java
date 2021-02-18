@@ -1,36 +1,13 @@
-package com.usastores.bean;
+package com.usastores.xml.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-
-@Entity
-@Table(name="storetable")
 public class StoreBean 
 {
-	@Override
-	public String toString() {
-		return "StoreBean [storeId=" + storeId + ", storeName=" + storeName + ", storeArea=" + storeArea + ", zipcode="
-				+ zipcode + ", distanceInMiles=" + distanceInMiles + "]";
-	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO , generator="seq")
-	@GenericGenerator(name = "seq", strategy="increment")
-	@Column(name="store_id")
 	private int storeId;
-	@Column(name="store_name")
 	private String storeName;
-	@Column(name="store_area")
 	private String storeArea;
-	@Column(name="store_zipcode")
 	private int zipcode;
-	@Column(name="store_distance")
 	private float distanceInMiles;
+	
 	public int getStoreId() {
 		return storeId;
 	}
